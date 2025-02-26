@@ -13,7 +13,6 @@ from matplotlib.patches import Patch
 import glob
 import re
 import math
-from hoho import useful_recurring_functions, global_functions, find_pedestal_values_old, pedestal_values
 import scipy.interpolate
 from collections import OrderedDict
 import fcntl
