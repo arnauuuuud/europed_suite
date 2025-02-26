@@ -36,8 +36,13 @@ def removedoth5(filename):
 def decompress_gz(filename):
     foldername = f"{os.environ['EUROPED_DIR']}hdf5"
     os.chdir(foldername)
+
+    if os.path.isfile(f'{filename}.h5'):
+        return False
+
     with gzip.open(f'{filename}.h5.gz', 'rb') as f_in, open(f'{filename}.h5', 'wb') as f_out:
         shutil.copyfileobj(f_in, f_out)
+    return True
 
 def compress_to_gz(filename):
     foldername = f"{os.environ['EUROPED_DIR']}hdf5"
@@ -48,7 +53,7 @@ def compress_to_gz(filename):
 
 
 def get_data(filename, list_groups):
-    decompress_gz(filename)
+    zipped = decompress_gz(filename)
     with h5py.File(f'{filename}.h5', 'r') as hdf5_file:
         # lock_file(hdf5_file)
         temp = hdf5_file
@@ -57,7 +62,8 @@ def get_data(filename, list_groups):
             temp = temp[group]
         res = temp[0]
         # unlock_file(hdf5_file)
-    removedoth5(filename)
+    if zipped:
+        removedoth5(filename)
     return res
 
 def get_data_decrompressed(filename, list_groups):
@@ -89,7 +95,7 @@ def find_profile_with_delta_name(filename, delta):
     return res
 
 def find_profile_with_delta(filename, delta):
-    decompress_gz(filename)
+    zipped = decompress_gz(filename)
     foldername = f"{os.environ['EUROPED_DIR']}hdf5"
     os.chdir(foldername)
     res = None
@@ -103,7 +109,8 @@ def find_profile_with_delta(filename, delta):
             # unlock_file(h5file)
             raise useful_recurring_functions.CustomError(f'No profile in {h5file} with the given delta {delta} - discrepancy between the delta list from the hdf5, and the different delta of each profile')
         # unlock_file(h5file)
-    removedoth5(filename)
+    if zipped:
+        removedoth5(filename)
     return res
 
 

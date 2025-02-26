@@ -180,7 +180,7 @@ def remove_wrong_slope(dict_gamma):
 
 
 def get_gammas(filename, crit="alfven", fixed_width=False):
-    h5_manipulation.decompress_gz(filename)
+    zipped = h5_manipulation.decompress_gz(filename)
     # Open the temporary file with h5py
     with h5py.File(filename + '.h5', 'r') as hdf5_file:
         # lock_file(hdf5_file)
@@ -255,7 +255,8 @@ def get_gammas(filename, crit="alfven", fixed_width=False):
         #     return None
         # unlock_file(hdf5_file)
 
-    h5_manipulation.removedoth5(filename)
+    if zipped:
+        h5_manipulation.removedoth5(filename)
 
     return dict_res
 

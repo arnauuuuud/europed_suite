@@ -38,7 +38,7 @@ def copy_original_file(original_name, extension_name, option):
     new_name = new_name_for_original_file(original_name, extension_name, option)
     if os.path.exists(foldername+new_name):
         raise useful_recurring_functions.CustomError('the new name for the original file already exists')
-    h5_manipulation.decompress_gz(original_name)
+    zipped = h5_manipulation.decompress_gz(original_name)
     shutil.copy(original_name +'.h5', new_name +'.h5')
     h5_manipulation.compress_to_gz(new_name)
     print(f'    New name for the old version of the file: {new_name}')
@@ -165,9 +165,10 @@ def merge(original_name, extension_name, option, modes, deltas_to_put, is_fixed_
 
 def merge_files(original_name, extension_name, option, modes, deltas, is_fixed_width, mishka):
     copy_original_file(original_name, extension_name, option)
-    h5_manipulation.decompress_gz(extension_name)
+    zipped = h5_manipulation.decompress_gz(extension_name)
     merge(original_name, extension_name, option, modes, deltas, is_fixed_width, mishka)
-    h5_manipulation.removedoth5(extension_name)
+    if zipped:
+        h5_manipulation.removedoth5(extension_name)
     h5_manipulation.compress_to_gz(original_name)
 
 

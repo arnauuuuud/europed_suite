@@ -23,7 +23,7 @@ def copy_original_file(original_name):
     latest_version = h5_manipulation.get_latest_version(original_name)
     this_version = latest_version+1
     new_name = f'{original_name}_{this_version}_beforeremovingprofiles'
-    h5_manipulation.decompress_gz(original_name)
+    zipped = h5_manipulation.decompress_gz(original_name)
     shutil.copy(original_name +'.h5', new_name +'.h5')
     h5_manipulation.compress_to_gz(new_name)
     print(f'Old version of {original_name} is now named {new_name}')

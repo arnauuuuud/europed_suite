@@ -44,7 +44,7 @@ def find_stored_name(europed_name):
 
 
 def read(europed_name, list_groups):
-    h5_manipulation.decompress_gz(f'{europed_name}.h5.gz')
+    zipped = h5_manipulation.decompress_gz(f'{europed_name}.h5.gz')
     with h5py.File(f'{europed_name}.h5', 'r') as hdf5_file:
         # lock_file(hdf5_file)
         temp = hdf5_file
@@ -56,13 +56,14 @@ def read(europed_name, list_groups):
             print(list(temp.keys()))
         # unlock_file(hdf5_file)
 
-    h5_manipulation.removedoth5(f'{europed_name}.h5')
+    if zipped:
+        h5_manipulation.removedoth5(f'{europed_name}.h5')
     return res
 
 
 
 def get(europed_name, list_groups):
-    h5_manipulation.decompress_gz(europed_name)
+    zipped = h5_manipulation.decompress_gz(europed_name)
     with h5py.File(f'{europed_name}.h5', 'r') as hdf5_file:
         # lock_file(hdf5_file)
         temp = hdf5_file
@@ -76,12 +77,12 @@ def get(europed_name, list_groups):
         except AttributeError:
             res = list(temp.keys())
         # unlock_file(hdf5_file)
-
-    h5_manipulation.removedoth5(europed_name)
+    if zipped:
+        h5_manipulation.removedoth5(europed_name)
     return res
 
 def get_xparam(europed_name, x_parameter):
-    h5_manipulation.decompress_gz(europed_name)
+    zipped = h5_manipulation.decompress_gz(europed_name)
     with h5py.File(f'{europed_name}.h5', 'r') as hdf5_file:
         try:
             n = hdf5_file['input']['steps'][0]
@@ -99,11 +100,12 @@ def get_xparam(europed_name, x_parameter):
             except IndexError:
                 pass
         # unlock_file(hdf5_file)
-    h5_manipulation.removedoth5(europed_name)
+    if zipped:
+        h5_manipulation.removedoth5(europed_name)
     return res
 
 def get_xparam_with_stability(europed_name, x_parameter):
-    h5_manipulation.decompress_gz(europed_name)
+    zipped = h5_manipulation.decompress_gz(europed_name)
     with h5py.File(f'{europed_name}.h5', 'r') as hdf5_file:
         # lock_file(hdf5_file)
         try:
@@ -120,8 +122,8 @@ def get_xparam_with_stability(europed_name, x_parameter):
             except KeyError:
                 pass
         # unlock_file(hdf5_file)
-
-    h5_manipulation.removedoth5(europed_name)
+    if zipped:
+        h5_manipulation.removedoth5(europed_name)
     return res
 
 

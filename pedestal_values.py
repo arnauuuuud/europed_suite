@@ -21,25 +21,28 @@ def fit_mtanh(psis, ne_profile):
 
    
 def profile_pars(filename, profile):
-    h5_manipulation.decompress_gz(filename)
+    zipped = h5_manipulation.decompress_gz(filename)
     with h5py.File(f'{filename}.h5', 'r') as hdf5_file:
         ne_pars = tuple(hdf5_file['scan'][str(profile)]['ne_parameters'])
-        te_pars = tuple(hdf5_file['scan'][str(profile)]['te_parameters'])   
-    h5_manipulation.removedoth5(filename)
+        te_pars = tuple(hdf5_file['scan'][str(profile)]['te_parameters'])  
+    if zipped:  
+        h5_manipulation.removedoth5(filename)
     return(te_pars, ne_pars)
 
 def ne_pars(filename, profile):
-    h5_manipulation.decompress_gz(filename)
+    zipped = h5_manipulation.decompress_gz(filename)
     with h5py.File(f'{filename}.h5', 'r') as hdf5_file:
         ne_pars = tuple(hdf5_file['scan'][str(profile)]['ne_parameters'])
-    h5_manipulation.removedoth5(filename)
+    if zipped:  
+        h5_manipulation.removedoth5(filename)
     return(ne_pars)
 
 def te_pars(filename, profile):
-    h5_manipulation.decompress_gz(filename)
+    zipped = h5_manipulation.decompress_gz(filename)
     with h5py.File(f'{filename}.h5', 'r') as hdf5_file:
         te_pars = tuple(hdf5_file['scan'][str(profile)]['te_parameters'])
-    h5_manipulation.removedoth5(filename)
+    if zipped:  
+        h5_manipulation.removedoth5(filename)
     return(te_pars)
 
 
@@ -125,7 +128,7 @@ def critical_profile_number(europed_name, crit='alfven', crit_value=0.03, exclud
     except ValueError:
         return None, None, None
     delta_above = np.min([d for d in deltas if d > delta_crit])
-    h5_manipulation.decompress_gz(europed_name)
+    zipped = h5_manipulation.decompress_gz(filename)
     with h5py.File(europed_name + '.h5', 'r') as h5file:
         try:
             if not fixed_width:
@@ -136,7 +139,8 @@ def critical_profile_number(europed_name, crit='alfven', crit_value=0.03, exclud
                 profile_above = h5_manipulation.find_profile_with_betaped_file(h5file,delta_above)
         except useful_recurring_functions.CustomError:
             return None, None, None
-    h5_manipulation.removedoth5(europed_name)
+    if zipped:  
+        h5_manipulation.removedoth5(filename)
 
     proportionality_ratio = (delta_crit-delta_below)/(delta_above-delta_below)
     return profile_below, profile_above, proportionality_ratio
