@@ -3,7 +3,7 @@ import subprocess
 from europed_suite import useful_recurring_functions, h5_manipulation, hdf5_data
 import matplotlib.pyplot as plt
 from matplotlib import ticker
-from pylib.misc import ReadFile
+from jetlib.misc import ReadFile
 import h5py
 import gzip
 import tempfile
