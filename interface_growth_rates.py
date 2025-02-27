@@ -335,7 +335,7 @@ if __name__ == '__main__':
     check_all_button.clicked.connect(checkAll)
     none_button.clicked.connect(uncheckAll)
     n_label = QLabel("n")
-    checkboxes_n = [QCheckBox(str(n_value)) for n_value in [1, 2, 3, 4, 5, 6, 7, 8, 10, 15, 20, 30, 40, 50]]
+    checkboxes_n = [QCheckBox(str(n_value)) for n_value in [1, 2, 3, 4, 5, 6, 7, 8, 10, 15, 20, 30, 40, 50, 70, 100]]
     for checkbox in checkboxes_n:
         checkbox.setChecked(True)
 
