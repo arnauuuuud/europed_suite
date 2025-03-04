@@ -14,7 +14,7 @@ def parse_delta(str):
     elif '-' in str:
         delta_min = round(float(str.split('-')[0]),5)
         delta_max = round(float(str.split('-')[1]),5)
-        step_size = 0.001
+        step_size = 0.0005
         deltas = np.arange(delta_min, delta_max + step_size, step_size)
         return deltas
     else:
