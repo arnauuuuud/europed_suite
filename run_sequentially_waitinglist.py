@@ -5,7 +5,7 @@ import subprocess
 import time
 import fcntl
 
-username = 'jwp9427'
+username = 'jzj7540'
 print(f'Current username is {username}, if not good, please update it.')
 
 waitinglistfile = f'/home/{username}/Desktop/waitinglist'

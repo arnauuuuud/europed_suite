@@ -8,8 +8,9 @@ filepath = sys.argv[1]
 if '/' not in filepath:
     filepath = f"{os.getcwd()}/{filepath}"
 
-username = 'jwp9427'
-print(f'Current username is {jwp9427}, if wrong please change it')
+username = 'jzj7540'
+print(f'Current username is {username}, if not good, please update it.')
+
 initdir = f"/home/{username}/work/scripts/batchtmpdir/"
 
 runfile_name = filepath.split('/')[-1][:-3]
