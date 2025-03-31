@@ -3,6 +3,7 @@
 import argparse
 from europed_suite import useful_recurring_functions
 import fcntl
+import os
 
 username = 'jzj7540'
 waitinglistfile = f'/home/{username}/Desktop/waitinglist'
