@@ -1,4 +1,4 @@
-### global_functions.py sets the plotting routine for the project, it fixes the names of the axis, the different colors, some key input and how the subplots are made
+ global_functions.py sets the plotting routine for the project, it fixes the names of the axis, the different colors, some key input and how the subplots are made
 
 from matplotlib.colors import Normalize
 from matplotlib.cm import ScalarMappable
@@ -139,6 +139,7 @@ dict_mode_color = {
     10: 'k',  # black
     15: '#708090', # slate gray
     20: '#FFA07A',  # light salmon
+    25: 'lightskyblue',
     30: '#8A2BE2',  # blue violet
     40: '#32CD32',  # lime green
     50: 'orange',  # gold
