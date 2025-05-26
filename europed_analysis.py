@@ -1,6 +1,6 @@
 import os
 import subprocess
-from europed_suite import useful_recurring_functions, h5_manipulation, hdf5_data
+from europed_suite import useful_recurring_functions, h5_manipulation, hdf5_data, pedestal_values
 import matplotlib.pyplot as plt
 from matplotlib import ticker
 from jetlib.misc import ReadFile

@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (
 )
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5 import NavigationToolbar2QT as NavigationToolbar
-from europed_suite import useful_recurring_functions, europed_analysis, global_functions
+from europed_suite import useful_recurring_functions, europed_analysis, global_functions, pedestal_values
 import matplotlib.pyplot as plt
 import matplotlib.transforms as transforms
 import traceback
